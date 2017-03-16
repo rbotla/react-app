@@ -1,7 +1,5 @@
+import React from 'react';
+import { render } from 'react-dom'; 
+import App from './components/app'
 
-
-
-let message = 'hello from entry'; // testing es6
-console.log(message);
-
-console.log('messages');
+render (<App />, document.getElementById('app')); 
