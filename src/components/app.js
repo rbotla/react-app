@@ -1,29 +1,32 @@
 import React from 'react';
 import TodosList from './todos-list';
+import InitiativeHome from './initiative-home'
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducers from '../store/reducers';
 
-const todos = [
-	{
-		task: "Make React app",
-		isCompleted: false
-	},
-	{
-		task: "Eat dinner",
-		isCompleted: true
-	}
-];
+const initialState = {};
+
+const store = createStore(
+	reducers, /* preloadedState, */
+	initialState
++  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 export default class App extends React.Component {
 
 	constructor (props) {
 		super(props);
-		this.state = { todos }; 
 	}
 
 	render () {
 		return (
 			<div>
-				<h2>Todos Application</h2>
-				<TodosList todos = {this.state.todos}></TodosList>
+			  <Provider store={store}>
+			  	<div class="container">
+						<InitiativeHome/>
+					</div>
+			  </Provider>
 			</div>
 		);
 	}
